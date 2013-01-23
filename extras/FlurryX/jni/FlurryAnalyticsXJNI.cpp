@@ -141,7 +141,9 @@ extern "C"
 		}
 
 
-		methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, mapClass);
+		jstring stringArg = methodInfo.env->NewStringUTF(eventName);
+		methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, stringArg, mapClass);
+		methodInfo.env->DeleteLocalRef(stringArg);
 		methodInfo.env->DeleteLocalRef(mapClass);
 		methodInfo.env->DeleteLocalRef(methodInfo.classID);
 
